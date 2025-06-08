@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+  namespace: blablacar
+spec:
+  selector:
+    app: user
+  ports:
+    - port: 80
+      targetPort: 8081
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+  namespace: blablacar
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      containers:
+        - name: user
+          image: ghcr.io/example/blablacar-user:latest
+          ports:
+            - containerPort: 8081
+          envFrom:
+            - configMapRef:
+                name: blablacar-config
+            - secretRef:
+                name: blablacar-secret

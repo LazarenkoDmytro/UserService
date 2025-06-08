@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blablacar-config
+  namespace: blablacar
+data:
+  POSTGRES_USER: user
+  POSTGRES_DB: db
+  RABBIT_HOST: rabbitmq
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: blablacar-secret
+  namespace: blablacar
+type: Opaque
+stringData:
+  POSTGRES_PASSWORD: pass
+  RABBIT_PASSWORD: pass

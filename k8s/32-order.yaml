@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service
+  namespace: blablacar
+spec:
+  selector:
+    app: order
+  ports:
+    - port: 80
+      targetPort: 8082
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+  namespace: blablacar
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+        - name: order
+          image: ghcr.io/example/blablacar-order:latest
+          ports:
+            - containerPort: 8082
+          envFrom:
+            - configMapRef:
+                name: blablacar-config
+            - secretRef:
+                name: blablacar-secret
