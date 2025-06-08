@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: ride
-          image: ghcr.io/example/blablacar-ride:latest
+          image: blablacar-ride:latest
           ports:
             - containerPort: 8083
           envFrom:

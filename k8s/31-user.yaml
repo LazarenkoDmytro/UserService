@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: user
-          image: ghcr.io/example/blablacar-user:latest
+          image: blablacar-user:latest
           ports:
             - containerPort: 8081
           envFrom:

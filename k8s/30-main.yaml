@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: main
-          image: ghcr.io/example/blablacar-main:latest
+          image: blablacar-main:latest
           ports:
             - containerPort: 8080
           envFrom:

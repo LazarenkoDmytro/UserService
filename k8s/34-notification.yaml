@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: notification
-          image: ghcr.io/example/blablacar-notification:latest
+          image: blablacar-notification:latest
           ports:
             - containerPort: 8084
           envFrom:

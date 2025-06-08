@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: payment
-          image: ghcr.io/example/blablacar-payment:latest
+          image: blablacar-payment:latest
           ports:
             - containerPort: 8085
           envFrom:
