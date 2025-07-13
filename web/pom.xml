@@ -7,7 +7,7 @@
     <parent>
         <groupId>ua.org.blablacar</groupId>
         <artifactId>UserService</artifactId>
-        <version>1.0.8</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>web</artifactId>
@@ -21,13 +21,13 @@
         <dependency>
             <groupId>ua.org.blablacar</groupId>
             <artifactId>domain</artifactId>
-            <version>1.0.8</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>ua.org.blablacar</groupId>
             <artifactId>service</artifactId>
-            <version>1.0.8</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -63,7 +63,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>dmytrolazarenko/user-service:${project.version}</name>
+                        <name>${env.IMAGE_NAME}:${env.IMAGE_TAG}</name>
+                        <publish>true</publish>
                     </image>
                 </configuration>
             </plugin>

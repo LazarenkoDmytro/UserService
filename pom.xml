@@ -12,7 +12,7 @@
 
     <groupId>ua.org.blablacar</groupId>
     <artifactId>UserService</artifactId>
-    <version>1.0.8</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>UserService as a part of BlaBlaCar app</name>
     <description>UserService</description>
