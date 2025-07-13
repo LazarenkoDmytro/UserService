@@ -29,6 +29,9 @@ jobs:
       - name: Run unit tests
         run: mvn -B test --no-transfer-progress
 
+      - name: Build all modules
+        run: mvn -B clean install -DskipTests --no-transfer-progress
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -37,11 +40,11 @@ jobs:
 
       - name: Build & push
         run: |
-          mvn -B -pl web -am \
-              -DskipTests \
-              -Dspring-boot.build-image.publish=true \
-              -Dspring-boot.build-image.imageName=${IMAGE_NAME}:${IMAGE_TAG} \
-              spring-boot:build-image --no-transfer-progress
+          mvn -B -pl web \
+            -DskipTests \
+            -Dspring-boot.build-image.imageName=${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
+            -Dspring-boot.build-image.publish=true \
+            spring-boot:build-image --no-transfer-progress
 
       - name: Notify k8s repo
         uses: peter-evans/repository-dispatch@v3

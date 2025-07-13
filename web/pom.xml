@@ -61,12 +61,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <image>
-                        <name>${env.IMAGE_NAME}:${env.IMAGE_TAG}</name>
-                        <publish>true</publish>
-                    </image>
-                </configuration>
             </plugin>
         </plugins>
     </build>
