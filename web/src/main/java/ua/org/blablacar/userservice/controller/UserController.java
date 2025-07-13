@@ -1,9 +1,9 @@
 package ua.org.blablacar.userservice.controller;
 
 import jakarta.validation.Valid;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import ua.org.blablacar.userservice.dto.PaginatedResponseDto;
 import ua.org.blablacar.userservice.dto.UserCreateDto;
 import ua.org.blablacar.userservice.dto.UserPatchDto;
 import ua.org.blablacar.userservice.dto.UserReadDto;
@@ -38,30 +39,30 @@ public class UserController {
     }
 
     @GetMapping
-    public Page<UserReadDto> getAll(@ParameterObject Pageable pageable) {
-        return service.findAll(pageable);
+    public PaginatedResponseDto<UserReadDto> getAll(@ParameterObject Pageable pageable) {
+        return PaginatedResponseDto.from(service.findAll(pageable));
     }
 
     @GetMapping("/{id}")
-    public UserReadDto get(@PathVariable Long id) {
+    public UserReadDto get(@PathVariable UUID id) {
         return service.findById(id);
     }
 
     @PutMapping("/{id}")
-    public UserReadDto update(@PathVariable Long id,
+    public UserReadDto update(@PathVariable UUID id,
                               @Valid @RequestBody UserUpdateDto dto) {
         return service.update(id, dto);
     }
 
     @PatchMapping("/{id}")
-    public UserReadDto patch(@PathVariable Long id,
+    public UserReadDto patch(@PathVariable UUID id,
                              @RequestBody UserPatchDto dto) {
         return service.patch(id, dto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable UUID id) {
         service.delete(id);
     }
 }

@@ -1,6 +1,7 @@
 package ua.org.blablacar.userservice.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,27 +31,27 @@ public class UserService {
         return repo.findAll(pageable).map(mapper::toDto);
     }
 
-    public UserReadDto findById(Long id) {
+    public UserReadDto findById(UUID id) {
         return mapper.toDto(get(id));
     }
 
-    public UserReadDto update(Long id, UserUpdateDto dto) {
+    public UserReadDto update(UUID id, UserUpdateDto dto) {
         User entity = get(id);
         mapper.update(dto, entity);
         return mapper.toDto(repo.save(entity));
     }
 
-    public UserReadDto patch(Long id, UserPatchDto dto) {
+    public UserReadDto patch(UUID id, UserPatchDto dto) {
         User entity = get(id);
         mapper.patch(dto, entity);
         return mapper.toDto(repo.save(entity));
     }
 
-    public void delete(Long id) {
+    public void delete(UUID id) {
         repo.delete(get(id));
     }
 
-    private User get(Long id) {
+    private User get(UUID id) {
         return repo.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("User " + id + " not found"));
     }
