@@ -1,0 +1,21 @@
+<configuration>
+    <appender name="json" class="net.logstash.logback.appender.LoggingEventCompositeJsonAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp/>
+                <logLevel/>
+                <loggerName/>
+                <threadName/>
+                <mdc/>
+                <message/>
+                <stackTrace/>
+            </providers>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="json"/>
+    </root>
+
+    <logger name="ua.org.blablacar.userservice.service.UserService" level="DEBUG"/>
+</configuration>
