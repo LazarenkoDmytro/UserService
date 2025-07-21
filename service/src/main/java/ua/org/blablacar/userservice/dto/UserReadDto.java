@@ -1,9 +1,10 @@
 package ua.org.blablacar.userservice.dto;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public record UserReadDto(
-    Long id,
+    UUID id,
     String firstName,
     String lastName,
     String email,

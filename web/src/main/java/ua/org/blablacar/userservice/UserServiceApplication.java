@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("ua.org.blablacar.userservice.entity")
 @EnableJpaRepositories("ua.org.blablacar.userservice.repository")
 public class UserServiceApplication {
-
+    // slight change to test
     public static void main(String[] args) {
         SpringApplication.run(UserServiceApplication.class, args);
     }
